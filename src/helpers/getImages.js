@@ -17,5 +17,6 @@ export const getImages = (size) => {
 
     const newImages = images.slice(0, size)
 
-    return newImages.flatMap(item => [item, item]).sort(() => Math.random() - 0.5)
+    return newImages.flatMap(item => [`1|${item}`, `2|${item}`])
+        .sort(() => Math.random() - 0.5)
 }
