@@ -6,7 +6,7 @@ import confetti from "canvas-confetti";
 let size = 3;
 let clicks = 0;
 
-const Cards = () => {
+const Cards = ({ start }) => {
 
     const [images, setImages] = useState(getImages(size));
     const [selected, setSelected] = useState([]);
@@ -14,10 +14,13 @@ const Cards = () => {
     const score = useRef(0);
 
     const handleClick = (item) => {
-        clicks = clicks + 1;
-        if (selected.length - 2) {
+        if (start) {
 
-            setSelected(selected => selected.concat(item))
+            clicks = clicks + 1;
+            if (selected.length < 2) {
+
+                setSelected(selected => selected.concat(item))
+            }
         }
 
     }
@@ -45,7 +48,7 @@ const Cards = () => {
                 startVelocity: 30,
                 spread: 300,
                 gravity: 1.5,
-                origin: {y: 0 }
+                origin: { y: 0 }
             })
         }
     }, [opened])
