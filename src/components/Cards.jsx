@@ -6,12 +6,11 @@ import confetti from "canvas-confetti";
 let size = 3;
 let clicks = 0;
 
-const Cards = ({ start }) => {
+const Cards = ({ start, score }) => {
 
     const [images, setImages] = useState(getImages(size));
     const [selected, setSelected] = useState([]);
     const [opened, setOpened] = useState([]);
-    const score = useRef(0);
 
     const handleClick = (item) => {
         if (start) {
@@ -93,7 +92,7 @@ const Cards = ({ start }) => {
                                     <img src="/question.png" alt="icon" />
                                 </div>
                                 <div className={`back ${include ? 'flip-back' : ""}`}>
-                                    <img src={item.split("|")[1]} alt="icon" />
+                                    <img src={include ? item.split("|")[1] : '/question.png'} alt="icon" />
                                 </div>
                             </div>
                         </li>

@@ -1,18 +1,19 @@
 import { useEffect, useRef } from "react";
 import Countdown from "react-countdown";
 
-const Counter = ({ props }) => <span>{props.seconds}</span>
+const Counter = ({ props }) => <span>{props.seconds === 0 ? 60 : props.seconds}</span>
 
 
 
 
-const Timer = ({ start , setStart}) => {
+const Timer = ({ start, setStart, setSave }) => {
 
     const timerRef = useRef()
 
     const handleEnd = ({ start }) => {
         console.log("timer end");
         setStart(false)
+        setSave(true)
     }
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const Timer = ({ start , setStart}) => {
 
 
                 <Countdown
-                    date={Date.now() + 5000}
+                    date={Date.now() + 60000}
                     renderer={props => <Counter props={props} />}
                     onComplete={handleEnd}
                     autoStart={false}
